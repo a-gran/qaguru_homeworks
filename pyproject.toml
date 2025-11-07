@@ -21,11 +21,11 @@ exclude = '''
 profile = "black"
 line-length = 90
 skip = [
-    ".git/",
-    ".venv/",
-    "venv/",
-    "env/",
-    "__pycache__/",
+    ".git",
+    ".venv",
+    "venv",
+    "env",
+    "__pycache__",
     "allure-results",
     "allure-report",
     ".pytest_cache",
