@@ -1,0 +1,35 @@
+[tool.black]
+line-length = 90
+target-version = ['py312']
+exclude = '''
+/(
+      .git/
+    | .venv/
+    | venv/
+    | env/
+    | __pycache__/
+    | allure-results
+    | allure-report
+    | .pytest_cache
+    | .vscode
+    | pytest.ini
+    | requirements.txt
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line-length = 90
+skip = [
+    ".git/",
+    ".venv/",
+    "venv/",
+    "env/",
+    "__pycache__/",
+    "allure-results",
+    "allure-report",
+    ".pytest_cache",
+    ".vscode",
+    "pytest.ini",
+    "requirements.txt"
+]
