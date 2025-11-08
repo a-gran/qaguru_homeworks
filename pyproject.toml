@@ -19,7 +19,7 @@ exclude = '''
 
 [tool.isort]
 profile = "black"
-line-length = 90
+line_length = 90
 skip = [
     ".git",
     ".venv",
