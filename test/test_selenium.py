@@ -10,7 +10,7 @@ def test_selenium():
     URL = "https://www.selenium.dev/"
     driver.get(URL)
 
-    time.sleep(5)  # чтобы браузер не сразу закрывался
+    time.sleep(2)  # чтобы браузер не сразу закрывался
 
     assert driver.title == "Selenium"
     assert driver.current_url == URL
