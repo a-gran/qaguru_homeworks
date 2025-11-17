@@ -12,5 +12,6 @@ def test_selenium():
 
     time.sleep(2)  # чтобы браузер не сразу закрывался
 
-    assert driver.title == "Selenium"
     assert driver.current_url == URL
+    assert driver.title == "Selenium"
+    

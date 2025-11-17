@@ -20,3 +20,6 @@ linter:
 	black .
 	isort .
 	flake8
+
+test:
+	pytest -q
