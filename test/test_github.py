@@ -1,9 +1,9 @@
+from typing import Generator
 
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.remote.webdriver import WebDriver
-from typing import Generator
 
 
 @pytest.fixture
@@ -25,4 +25,3 @@ def test_github(driver: WebDriver) -> None:
 
     assert "GitHub" in driver.title
     assert driver.current_url == url
-

@@ -38,6 +38,18 @@ exclude = '''
     | .vscode
     | pytest.ini
     | requirements.txt
+    | \.git
+    | \.venv
+    | venv
+    | env
+    | __pycache__
+    | allure-results
+    | allure-report
+    | \.pytest_cache
+    | \.vscode
+    | pytest\.ini
+    | requirements\.txt
+    | site-packages
 )/
 '''
 

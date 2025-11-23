@@ -14,4 +14,3 @@ def test_selenium():
 
     assert driver.current_url == URL
     assert driver.title == "Selenium"
-    
