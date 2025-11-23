@@ -1,3 +1,4 @@
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -24,3 +25,4 @@ def test_github(driver: WebDriver) -> None:
 
     assert "GitHub" in driver.title
     assert driver.current_url == url
+

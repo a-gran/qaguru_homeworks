@@ -1,25 +1,26 @@
-.PHONY: help install run_test test_only linter
+.PHONY: help install run_test test_only linter test
 
 help:
 	@echo "Makefile commands:"
-	@echo "  install      - Install dependencies"
+	@echo "  install      - Install dependencies using Poetry"
 	@echo "  run_test     - Run all tests"
 	@echo "  test_only    - Run tests with 'only' marker"
 	@echo "  linter       - Run code linters"
+	@echo "  test         - Run all tests in quiet mode"
 
 install:
-	pip install -r requirements.txt
+	poetry install
 
 run_test:
-	python -m pytest -v
+	poetry run pytest -v
 
 test_only:
-	python -m pytest -v -m only
+	poetry run pytest -v -m only
 
 linter:
-	black .
-	isort .
-	flake8
+	poetry run black .
+	poetry run isort .
+	poetry run flake8
 
 test:
-	pytest -q
+	poetry run pytest -q
