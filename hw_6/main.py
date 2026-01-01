@@ -1,9 +1,7 @@
 from datetime import date
 
-
-
 # Часть А. Функции
-'''
+"""
 Создайте набор функций для обработки информации о письме из HW4.
 Каждая функция должна выполнять ровно одно действие и возвращать результат.
 Аргументы и возвращаемые значения должны быть понятны по названию функции.
@@ -14,7 +12,8 @@ email = {
     "to": " bob_smith@Gmail.com ",
     "body": "Hello Bob,\n\tHere is the quarterly report.\n\tPlease review and let me know your feedback.\n\nBest,\nAlice",
 }
-'''
+"""
+
 
 # 1. Нормализация email адресов
 def normalize_addresses(value: str) -> str:
@@ -39,7 +38,7 @@ def clean_body_text(body: str) -> str:
     """
     Заменяет табы и переводы строк на пробелы.
     """
-    return body.replace('\n', ' ').replace('\t', ' ')
+    return body.replace("\n", " ").replace("\t", " ")
 
 
 # 4. Формирование итогового текста письма
@@ -59,7 +58,7 @@ def build_sent_text(email: dict) -> str:
 
 
 # 5. Проверка пустоты темы и тела
-def check_empty_fields(subject: str, body:str) -> tuple[bool, bool]:
+def check_empty_fields(subject: str, body: str) -> tuple[bool, bool]:
     """
     Возвращает кортеж (is_subject_empty, is_body_empty).
     True, если поле пустое.
@@ -103,23 +102,24 @@ test_emails = [
     "   ",
 ]
 
+
 def get_correct_email(email_list: list[str]) -> list[str]:
     """
     Возвращает список корректных email.
     """
     correct_emails = []
-    valid_domains = ('.com', '.ru', '.net')
+    valid_domains = (".com", ".ru", ".net")
 
     for email in email_list:
         # Очищаем от пробелов и приводим к нижнему регистру
         cleaned_email = email.strip().lower()
 
         # Базовые проверки
-        if not cleaned_email or '@' not in cleaned_email:
+        if not cleaned_email or "@" not in cleaned_email:
             continue
 
         # Разделяем на логин и домен
-        parts = cleaned_email.split('@')
+        parts = cleaned_email.split("@")
 
         # Должен быть ровно один символ @
         if len(parts) != 2:
@@ -139,7 +139,7 @@ def get_correct_email(email_list: list[str]) -> list[str]:
         # Убираем доменную зону и проверяем остаток
         for zone in valid_domains:
             if domain.endswith(zone):
-                domain_without_zone = domain[:-len(zone)]
+                domain_without_zone = domain[: -len(zone)]
                 if domain_without_zone:  # Должно быть что-то перед .com/.ru/.net
                     correct_emails.append(cleaned_email)
                 break
@@ -153,12 +153,7 @@ def create_email(sender: str, recipient: str, subject: str, body: str) -> dict:
     Создает словарь email с базовыми полями:
     'sender', 'recipient', 'subject', 'body'
     """
-    return {
-        'sender': sender,
-        'recipient': recipient,
-        'subject': subject,
-        'body': body
-    }
+    return {"sender": sender, "recipient": recipient, "subject": subject, "body": body}
 
 
 # 9. Добавление даты отправки
@@ -176,13 +171,13 @@ def extract_login_domain(address: str) -> tuple[str, str]:
     Возвращает логин и домен отправителя.
     Пример: "user@mail.ru" -> ("user", "mail.ru")
     """
-    return tuple(address.split('@'))
+    return tuple(address.split("@"))
 
 
 # Часть B. Отправка письма
 # Создать функцию отправки письма с базовой валидацией адресов и логикой выбора отправителя recipient
 
-'''
+"""
 Требования к функции
 Функция sender_email принимает 3 позиционных аргумента recipient_list — emails получателя,
 subject — заголовок письма, message — текст письма и один обязательно именованный sender="default@study.com".
@@ -221,9 +216,12 @@ subject — заголовок письма, message — текст письма
     Тема: {subject}, дата {date}
     {short_clean_body}
       ] ...
-'''
+"""
 
-def sender_email(recipient_list: list[str], subject: str, message: str, *, sender="default@study.com") -> list[dict]:
+
+def sender_email(
+    recipient_list: list[str], subject: str, message: str, *, sender="default@study.com"
+) -> list[dict]:
     # Проверить, что recipient_list не пустой
     if not recipient_list:
         return []
@@ -261,7 +259,7 @@ def sender_email(recipient_list: list[str], subject: str, message: str, *, sende
             sender=sender_normalized,
             recipient=recipient,
             subject=subject_clean,
-            body=body_clean
+            body=body_clean,
         )
 
         # Добавить дату отправки с помощью add_send_date()
@@ -269,14 +267,16 @@ def sender_email(recipient_list: list[str], subject: str, message: str, *, sende
 
         # Замаскировать email отправителя
         login, domain = extract_login_domain(sender_normalized)
-        email['masked_sender'] = mask_sender_email(login, domain)
+        email["masked_sender"] = mask_sender_email(login, domain)
 
         # Сохранить короткую версию в email["short_body"]
         email = add_short_body(email)
 
         # Сформировать итоговый текст письма
         # Используем short_body согласно примеру результата
-        email['sent_text'] = f"""Кому: {email['recipient']}, от {email['sender']}
+        email[
+            "sent_text"
+        ] = f"""Кому: {email['recipient']}, от {email['sender']}
                                 Тема: {email['subject']}, дата {email['date']}
                                 {email['short_body']}"""
 
@@ -284,7 +284,3 @@ def sender_email(recipient_list: list[str], subject: str, message: str, *, sende
 
     # Вернуть итоговый список писем
     return emails
-
-
-
-
