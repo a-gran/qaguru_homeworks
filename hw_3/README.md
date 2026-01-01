@@ -1,1 +1,0 @@
-## Homeworks QA_GURU 23
